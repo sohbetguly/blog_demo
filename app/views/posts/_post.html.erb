@@ -1,5 +1,9 @@
 <div id="<%= dom_id post %>">
-  <p><%= dom_id post %></p>
+  <%# #Question where user_path(post.user) came from where is the source of user_path(post.user) %>
+  <h2>
+    Posted by: 
+    <%= link_to post.user.name, user_path(post.user) %>
+  </h2>
   <p>
     <b>Title:</b>
     <%= post.title %>
