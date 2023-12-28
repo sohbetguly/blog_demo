@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_26_032340) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_27_140220) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -18,6 +18,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_26_032340) do
     t.datetime "updated_at", null: false
     t.integer "views", default: 0
     t.integer "hello"
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -28,8 +30,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_26_032340) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "views", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "posts", "users"
 end
